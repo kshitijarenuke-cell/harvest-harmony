@@ -61,40 +61,54 @@ const LohriSection = () => {
           <Bonfire className="transform scale-110 md:scale-125" />
         </div>
 
-        {/* Offerings around fire */}
-        <div className="flex justify-center gap-8 mb-8">
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-amber-200 flex items-center justify-center text-2xl">
-              🥜
+        {/* Offerings around fire with explanation */}
+        <div className="bg-amber-900/30 backdrop-blur-sm rounded-2xl p-6 mb-6 max-w-2xl mx-auto">
+          <h3 className="font-display text-lg text-amber-200 font-semibold mb-4">Sacred Offerings to the Fire</h3>
+          <div className="flex justify-center gap-8 mb-4">
+            <div className="text-center">
+              <div className="w-14 h-14 mx-auto mb-2 rounded-full bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center shadow-lg">
+                <span className="text-2xl">🥜</span>
+              </div>
+              <span className="text-sm text-amber-200/90 font-body">Peanuts</span>
             </div>
-            <span className="text-xs text-amber-200/80">Peanuts</span>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-amber-200 flex items-center justify-center text-2xl">
-              🍿
+            <div className="text-center">
+              <div className="w-14 h-14 mx-auto mb-2 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-lg">
+                <span className="text-2xl">🍿</span>
+              </div>
+              <span className="text-sm text-amber-200/90 font-body">Popcorn</span>
             </div>
-            <span className="text-xs text-amber-200/80">Popcorn</span>
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 mx-auto mb-2 rounded-full bg-amber-200 flex items-center justify-center text-2xl">
-              🍬
+            <div className="text-center">
+              <div className="w-14 h-14 mx-auto mb-2 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg">
+                <span className="text-2xl">🍬</span>
+              </div>
+              <span className="text-sm text-amber-200/90 font-body">Rewri</span>
             </div>
-            <span className="text-xs text-amber-200/80">Rewri</span>
           </div>
+          <p className="font-body text-sm text-amber-200/80 leading-relaxed">
+            These offerings are thrown into the sacred fire as gratitude to Agni (Fire God). 
+            Peanuts and popcorn represent the winter harvest, while rewri (jaggery candy) symbolizes sweetness in life.
+          </p>
+        </div>
+
+        {/* Why we celebrate */}
+        <div className="bg-orange-900/30 backdrop-blur-sm rounded-2xl p-6 mb-6 max-w-2xl mx-auto">
+          <h3 className="font-display text-lg text-amber-200 font-semibold mb-2">Why We Celebrate</h3>
+          <p className="font-body text-amber-100/90 text-sm leading-relaxed">
+            Lohri marks the end of the coldest winter month and celebrates the harvest of rabi (winter) crops.
+            The bonfire represents the sun's return, bringing warmth and longer days ahead.
+            It's a time for families to gather, sing folk songs, and welcome newlyweds and newborns into the community.
+          </p>
         </div>
 
         <p className="font-body text-lg md:text-xl text-amber-100/90 max-w-2xl mx-auto leading-relaxed">
-          Lohri celebrates the <strong>end of winter</strong> and the harvest of rabi crops.
-          <span className="block mt-2">
-            Families gather around the <strong>sacred bonfire</strong>, singing and dancing.
-          </span>
+          Families gather around the <strong>sacred bonfire</strong>, singing and dancing.
         </p>
 
         <p className="font-display text-xl md:text-2xl text-amber-300 italic mt-8">
           "सुंदर मुंदरीये!"
         </p>
         <p className="font-body text-sm text-amber-200/60 mt-2">
-          Traditional Lohri folk song
+          Traditional Lohri folk song celebrating love and togetherness
         </p>
       </div>
 

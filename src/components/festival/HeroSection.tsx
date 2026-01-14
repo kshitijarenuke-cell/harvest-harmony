@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Kite from "./Kite";
 import Sun from "./Sun";
-import { ChevronDown } from "lucide-react";
 
 const HeroSection = () => {
   const [showContent, setShowContent] = useState(false);
@@ -11,8 +10,8 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const scrollToNext = () => {
-    document.getElementById("sankranti")?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -80,31 +79,61 @@ const HeroSection = () => {
           showContent ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-shadow-warm">
-          <span className="block">One Sun 🌞</span>
-          <span className="block text-gradient-gold mt-2">One Harvest 🌾</span>
-          <span className="block mt-2">Many Celebrations 🇮🇳</span>
+        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-shadow-warm">
+          <span className="block text-amber-900 drop-shadow-lg">One Sun 🌞</span>
+          <span className="block mt-2 bg-gradient-to-r from-amber-600 via-yellow-500 to-orange-500 bg-clip-text text-transparent drop-shadow-lg" style={{ WebkitTextStroke: '1px rgba(139, 69, 19, 0.3)' }}>
+            One Harvest 🌾
+          </span>
+          <span className="block mt-2 text-amber-900 drop-shadow-lg">Many Celebrations 🇮🇳</span>
         </h1>
 
-        <p className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mt-8">
-          <span className="inline-block px-3 py-1 bg-card/80 backdrop-blur-sm rounded-full">
+        <p className="font-body text-lg md:text-xl text-amber-900/90 max-w-2xl mx-auto mt-8">
+          <span className="inline-block px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full shadow-lg">
             Makara Sankranti • Pongal • Lohri • Bihu
           </span>
         </p>
 
-        <p className="font-body text-sm md:text-base text-muted-foreground/80 max-w-xl mx-auto mt-6">
+        <p className="font-body text-sm md:text-base text-amber-800/80 max-w-xl mx-auto mt-6">
           A journey across India celebrating the harvest festival
         </p>
       </div>
 
-      {/* Scroll indicator */}
-      <button
-        onClick={scrollToNext}
-        className="absolute bottom-24 md:bottom-32 left-1/2 -translate-x-1/2 text-foreground/70 hover:text-foreground transition-colors cursor-pointer animate-scroll-bounce"
-        aria-label="Scroll to next section"
-      >
-        <ChevronDown className="w-8 h-8" />
-      </button>
+      {/* Festival Journey Navigation - Unique floating cards */}
+      <div className="absolute bottom-12 md:bottom-16 left-0 right-0 px-4">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-center text-amber-800/70 text-sm mb-4 font-body">Begin Your Journey</p>
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+            <button
+              onClick={() => scrollToSection("sankranti")}
+              className="group flex items-center gap-2 px-4 py-2 bg-sky-500/90 hover:bg-sky-600 text-white rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <span className="text-xl">🪁</span>
+              <span className="font-body text-sm hidden md:inline">Sankranti</span>
+            </button>
+            <button
+              onClick={() => scrollToSection("pongal")}
+              className="group flex items-center gap-2 px-4 py-2 bg-amber-500/90 hover:bg-amber-600 text-white rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <span className="text-xl">🍚</span>
+              <span className="font-body text-sm hidden md:inline">Pongal</span>
+            </button>
+            <button
+              onClick={() => scrollToSection("lohri")}
+              className="group flex items-center gap-2 px-4 py-2 bg-orange-600/90 hover:bg-orange-700 text-white rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <span className="text-xl">🔥</span>
+              <span className="font-body text-sm hidden md:inline">Lohri</span>
+            </button>
+            <button
+              onClick={() => scrollToSection("bihu")}
+              className="group flex items-center gap-2 px-4 py-2 bg-green-600/90 hover:bg-green-700 text-white rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <span className="text-xl">🥁</span>
+              <span className="font-body text-sm hidden md:inline">Bihu</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

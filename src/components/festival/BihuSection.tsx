@@ -1,7 +1,43 @@
+import { useState, useRef, useEffect } from "react";
 import FestivalSection from "./FestivalSection";
 import Dhol from "./Dhol";
 
 const BihuSection = () => {
+  const [isHovering, setIsHovering] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Create audio element for dhol sound
+    audioRef.current = new Audio();
+    audioRef.current.src = "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdH6LjY2Ff3Z0dH2DhoeGhIB8eXt9gIGBgH58e3t8foCBgYB+fHt7fH6AgYGAfnx7e3x+gIGBgH58e3t8foCBgYB+fHt7fH6AgYGAfnx7e3x+gIGBgH58e3t8foCBgYB+fHt7fH6AgYGAfnx7e3x+gIGBgH58e3t8foCBgYB+fHt7fH5/gIGAfnx7e3x+gIGBgH58e3t8foCBgYB+fHt7fH6AgYGAfnx7e3x+gIGBgH58e3t8foCBgYB+fHt7fH6AgYGAfnx7e3x+gIGBgH58e3t8foCBgYB+fHt7fH6AgYGAfnx7e3x+gIGBgH58e3t8foCBgYB+";
+    audioRef.current.volume = 0.3;
+    audioRef.current.loop = true;
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    if (audioRef.current) {
+      audioRef.current.play().catch(() => {
+        // Audio play failed, likely due to autoplay restrictions
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  };
+
   return (
     <FestivalSection id="bihu" className="bg-bihu-green relative overflow-hidden">
       {/* Rice field pattern */}
@@ -59,9 +95,18 @@ const BihuSection = () => {
           Bihu
         </h2>
 
-        {/* Dhol */}
-        <div className="flex justify-center mb-8">
-          <Dhol className="transform scale-110 md:scale-125" />
+        {/* Dhol with hover sound */}
+        <div 
+          className="flex justify-center mb-8 cursor-pointer"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className="relative">
+            <Dhol className="transform scale-110 md:scale-125" isBeating={isHovering} />
+            <p className="text-xs text-muted-foreground mt-4 animate-pulse">
+              {isHovering ? "🎵 Playing..." : "Hover to hear the dhol!"}
+            </p>
+          </div>
         </div>
 
         {/* Dance pose silhouettes */}
@@ -94,19 +139,33 @@ const BihuSection = () => {
           </div>
         </div>
 
+        {/* Why we celebrate */}
+        <div className="bg-green-200/40 backdrop-blur-sm rounded-2xl p-6 mb-6 max-w-2xl mx-auto">
+          <h3 className="font-display text-lg text-foreground font-semibold mb-2">Why We Celebrate</h3>
+          <p className="font-body text-foreground/80 text-sm leading-relaxed">
+            Bihu marks the Assamese New Year and celebrates three agricultural cycles throughout the year.
+            Bohag Bihu (in April) welcomes spring, signifying new life, love, and the start of the harvest season.
+            It's a time for traditional Bihu dance, folk songs, and feasting with pithas (rice cakes) and laru sweets.
+          </p>
+        </div>
+
         <p className="font-body text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto leading-relaxed">
-          Bihu celebrates <strong>new beginnings</strong> and the Assamese harvest season.
-          <span className="block mt-2">
-            The rhythmic beats of the <strong>dhol</strong> fill the air as people perform the traditional Bihu dance.
-          </span>
+          The rhythmic beats of the <strong>dhol</strong> fill the air as people perform the traditional Bihu dance.
         </p>
 
-        <p className="font-display text-xl md:text-2xl text-secondary italic mt-8">
-          "বহাগ বিহুৰ শুভেচ্ছা!"
-        </p>
-        <p className="font-body text-sm text-muted-foreground mt-2">
-          "Happy Bohag Bihu!"
-        </p>
+        {/* Assamese greeting with meaning */}
+        <div className="mt-8 bg-gradient-to-r from-green-300/50 via-lime-200/50 to-green-300/50 rounded-2xl p-6 max-w-xl mx-auto">
+          <p className="font-display text-2xl md:text-3xl text-secondary font-bold">
+            "বহাগ বিহুৰ শুভেচ্ছা!"
+          </p>
+          <p className="font-body text-base text-foreground/90 mt-3 font-medium">
+            "Bohag Bihur Hubhechha!"
+          </p>
+          <p className="font-body text-sm text-muted-foreground mt-2 leading-relaxed">
+            This means "Happy Bohag Bihu!" — a heartfelt greeting exchanged during the spring festival, 
+            wishing prosperity, happiness, and a bountiful harvest in the coming year.
+          </p>
+        </div>
       </div>
     </FestivalSection>
   );
