@@ -365,16 +365,31 @@
   }
 
   /* Particle fly to kite animation */
-  @keyframes particle-fly {
-    0% {
-      transform: translate(0, 0) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translate(var(--target-x), var(--target-y)) scale(0.3);
-      opacity: 0;
-    }
+@keyframes particle-fly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
   }
+  100% {
+    transform: translate(var(--target-x), var(--target-y)) scale(0.3);
+    opacity: 0;
+  }
+}
+
+@keyframes kite-flyout {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(1) rotate(-15deg);
+    opacity: 0;
+  }
+}
 
   .animate-particle-fly {
     animation: particle-fly 2s ease-out forwards;
@@ -413,6 +428,26 @@
 
   .animate-burst-ring {
     animation: burst-ring 1s ease-out forwards;
+  }
+
+  /* Kite flyout animation */
+  @keyframes kite-flyout {
+    0% {
+      transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+      opacity: 0;
+    }
+    20% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(calc(-50% + var(--end-x)), calc(-50% + var(--end-y))) scale(1) rotate(-15deg);
+      opacity: 0;
+    }
+  }
+
+  .animate-kite-flyout {
+    animation: kite-flyout 2s ease-out forwards;
   }
 
   /* Sway animation for sugarcane */
